@@ -38,9 +38,9 @@ public class ArticuloService  {
 	@Autowired(required=true)
 	ArticuloController articuloController;
 
-	@RequestMapping("/traerArticulo")
-	public Articulo consultarArticulo() {
-		return articuloRepository.findById(1);
+	@RequestMapping("/traerArticulo/{id}")
+	public Articulo consultarArticulo(@RequestParam long id) {
+		return articuloRepository.findById(id);
 	}
 
 	@RequestMapping("/eliminarArticulo")
