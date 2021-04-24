@@ -8,12 +8,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @ComponentScan (basePackages="co.com.entities,co.com.repositories,co.com.services,co.com.controllers")
 @EntityScan(basePackages = {"co.com.entities"}) 
 @EnableJpaRepositories ("co.com.repositories")
-
+@EnableSwagger2
 public class ArtiklaApplication {
 
 	public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class ArtiklaApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
-            }
+}
         };
     }
 }
