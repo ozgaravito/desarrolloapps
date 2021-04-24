@@ -22,7 +22,7 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				//.apis(RequestHandlerSelectors.basePackage("co.edu.poli.mongodb.controller")) //Specific package
-				.apis(RequestHandlerSelectors.basePackage("co.com.artikla")) //All project
+				.apis(RequestHandlerSelectors.basePackage("co.com")) //All project
 				//.paths(PathSelectors.regex("/api/v1.*")) //filter RequestMapping with regular expression
 				.paths(PathSelectors.any())
 				.build()
