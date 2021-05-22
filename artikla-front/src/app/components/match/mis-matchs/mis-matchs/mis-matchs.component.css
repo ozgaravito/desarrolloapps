@@ -1,0 +1,75 @@
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #4cbbb9 !important;
+    -webkit-box-shadow: -1px 3px 20px 4px rgba(15,56,90,0.69);
+    -moz-box-shadow: -1px 3px 20px 4px rgba(15,56,90,0.69);
+    box-shadow: -1px 3px 20px 4px rgba(15,56,90,0.69);
+}
+
+.nav-link{
+   color: #000000;
+   border: 0.5px solid #4cbbb9;
+   transition: linear;
+}
+.nav-link:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.match-photo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.solicitud-container{ 
+    -webkit-box-shadow: -1px 3px 20px -8px rgba(15,56,90,0.69);
+    -moz-box-shadow: -1px 3px 20px -8px rgba(15,56,90,0.69);
+    box-shadow: -1px 3px 20px -8px rgba(15,56,90,0.69);
+    border-radius: 10px;
+    padding: 2em;
+    margin-top: 4em;
+    width: 100%;
+}
+
+.nombre-match{
+    width: 100%;
+
+}
+.nombre-match span{
+    margin-top: 2em;
+    text-shadow: 1px 1px rgba(0,0,0,0.5);
+}
+
+.estado-match i{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.7);
+    transition: linear;
+}
+
+.estado-match i:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.ver-detalle-match:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.aceptar-match{
+    color: rgba(12, 100, 12, 0.78);
+    transition: linear;
+}
+.rechazar-match{
+    color: #d63031;
+}
+
+.aceptar-match:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.rechazar-match:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}

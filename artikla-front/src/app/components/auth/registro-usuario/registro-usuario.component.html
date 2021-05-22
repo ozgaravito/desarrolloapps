@@ -1,0 +1,129 @@
+<div class="fondo-auth"></div>
+<div class="contenedor-window" *ngIf="decisionRegistro == null">
+    <div class="contenedor-prin">
+        <div class="login-card user_card_2 card-window">
+            <div class="user_card">
+                <div class="title-general text-center">
+                    <h5 class="panel-title">Registro de usuario</h5>
+                </div>
+                <div class="title-general text-center">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-sm"
+                        (click)="DesicionUsuarioRegistro(TIPO_USUARIO.AUTOR)">Registrarme como autor</button>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-sm"
+                        (click)="DesicionUsuarioRegistro(TIPO_USUARIO.EDITOR)">Registrarme como editor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="decisionRegistro != null">
+    <div class="contenedor-prin">
+        <div class="login-card card-register">
+            <div class="user_card">
+                <div class="d-flex justify-content-center title-general">
+                    <h5 class="panel-title" *ngIf="decisionRegistro == TIPO_USUARIO.EDITOR">EDITOR</h5>
+                    <h5 class="panel-title" *ngIf="decisionRegistro == TIPO_USUARIO.AUTOR">AUTOR</h5>
+                </div>
+                <hr>
+                <div class="justify-content-center">
+                    <form id="form" [formGroup]="formRegistrar" (ngSubmit)="registrar()" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <!-- <label class="label-form" for="nombreUsuario">Nombre</label> -->
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.nombreUsuarioVal.showMsg }"
+                                    formControlName="nombre" autocomplete="off" placeholder="Ingresa tu nombre completo"><span class="oblig"> *</span>
+                                    <span class="invalid-feedback">{{ VAL.nombreUsuarioVal.showMsg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-at"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.correoUsuarioVal.showMsg }"
+                                    formControlName="correo" autocomplete="off" placeholder="ejemplo@email.com"><span class="oblig"> *</span>
+                                    <span class="invalid-feedback">{{ VAL.correoUsuarioVal.showMsg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="input-group input-group-sm">
+                                    <textarea cols="30" rows="3" formControlName="descripcion" class="form-control"
+                                    placeholder="Cuéntanos un poco sobre ti" [ngClass]="{'is-invalid': VAL.descripcionUsuarioVal.showMsg }"></textarea>
+                                    <span class="invalid-feedback">{{ VAL.descripcionUsuarioVal.showMsg }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3" *ngIf="decisionRegistro == TIPO_USUARIO.EDITOR">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-newspaper"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.nombreRevistaVal.showMsg }"
+                                    formControlName="nombreRevista" autocomplete="off" placeholder="Nombre de la revista"><span class="oblig"> *</span>
+                                    <span class="invalid-feedback">{{ VAL.nombreRevistaVal.showMsg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3" *ngIf="decisionRegistro == TIPO_USUARIO.EDITOR">
+                                <div class="input-group input-group-sm">
+                                    <textarea cols="30" rows="3" formControlName="descripcionRevista" class="form-control"
+                                    placeholder="Has una descripción de la revista" [ngClass]="{'is-invalid': VAL.descripcionRevistaVal.showMsg }"></textarea>
+                                    <span class="invalid-feedback">{{ VAL.descripcionRevistaVal.showMsg }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 title-general">
+                                <h6 class="panel-title">Contraseña de usuario</h6>
+                            </div>
+                            <hr>
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.passwordUsuarioVal.showMsg }"
+                                    formControlName="clave" autocomplete="off" id="PasswordUsuario" placeholder="Contraseña"><span class="oblig"> *</span>
+                                    <span toggle="#Password" class="fa fa-fw fa-eye field-icon toggle-password" (click)="status.viewPass($event.target, 'PasswordUsuario')"></span>
+                                    <span class="invalid-feedback">{{ VAL.passwordUsuarioVal.showMsg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.passwordConfirmVal.showMsg }"
+                                    formControlName="passwordConfirm" autocomplete="off" placeholder="Confirma tu contraseña"><span class="oblig"> *</span>
+                                    <!-- <span toggle="#Password" class="fa fa-fw fa-eye field-icon toggle-password" (click)="status.viewPass($event.target, 'PasswordUsuario')"></span> -->
+                                    <span class="invalid-feedback">{{ VAL.passwordConfirmVal.showMsg }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 mb-3 text-center">
+                                <p class="text-danger" *ngIf="formRegistrar.get('clave').value.length > 0 && formRegistrar.get('passwordConfirm').value.length > 0 &&
+                                    formRegistrar.get('clave').value != formRegistrar.get('passwordConfirm').value">
+                                    Las contraseñas no coinciden</p>
+                            </div>
+                            <div class="col-md-6 offset-md-3">
+                                <div class="form-group">
+                                    <input type="submit" name="btn-vincular" class="btn btn-login btn-sm" value="Enviar"
+                                    [disabled]="!formRegistrar.valid || formRegistrar.get('clave').value != formRegistrar.get('passwordConfirm').value">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,46 @@
+<!-- Ventana modal para mostrar mensajes desde cada componente -->
+<app-modal-mensaje *ngIf="status.modalInfo.mostrarModal" [modalInfo]="status.modalInfo"
+(modalConfirmado)="confirmarEliminarArticulo($event)"></app-modal-mensaje>
+<div class="articulos" >
+  <div class="row">
+    <div class="col-md-12 mt-5">
+        <a class="btn btn-outline-success fa fa-plus" (click)="asignarModulo(MODULOS.ARTICULOS_CREAR)"> Nuevo artículo</a>
+    </div>
+  </div>
+  <hr/>
+  <div class="row articulos-container">
+      <div *ngFor="let articulo of articulos" class="col-md-4 p-5">
+          <div class="card match-box">
+            <div class="card-header">
+              <div class="text-center">
+                <label class="label-form articulo-titulo" style="width: 100%;">{{articulo.titulo}}</label>
+              </div>
+            </div>
+              <div class="card-body">
+                <div class="row title-general text-left articulo-descrip">
+                  <p class="card-text">{{articulo.descripcion}}</p>
+                </div>
+                <hr/>
+                <div class="row">
+                  <div class="col-md-5 text-left" *ngFor="let categoria of articulo.categorias" >
+                    <span class="badge badge-dark ml-2">{{categoria.titulo}} <br/> </span>
+                  </div>
+                  
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                      <a (click)="editarArticulo(articulo, articulo.categorias)" class="btn btn-outline-warning fa fa-wrench"></a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <a (click)="eliminarArticulo(articulo)" class="btn btn-outline-danger fa fa-times"></a>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>   
+  </div>
+</div>
+  
+    <app-editar *ngIf="modulo == MODULOS.ARTICULOS_EDITAR" (backHome)="cerrarModal($event)"  [articuloEditar]="articuloDto" [categoriasEditar]="categorias"> </app-editar>  
+    <app-insertar *ngIf="modulo == MODULOS.ARTICULOS_CREAR" (backHome)="cerrarModal($event)"></app-insertar>

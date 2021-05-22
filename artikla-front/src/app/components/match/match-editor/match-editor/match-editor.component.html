@@ -1,0 +1,50 @@
+<div class="row match-content text-center">
+    <div class="col-md-3 match-box" *ngFor="let articulo of articulosMatch">
+        <div class="row match-header">
+            <div class="col-md-4 text-left">
+                <label class="label-form"><i class="fas fa-feather fa-2x mt-2"></i></label>
+            </div>
+            <div class="col-md-4 match-photo text-center">
+                <img src="../../../../assets/images/login-wallpaper.jpg" alt="">
+            </div>
+        </div>
+        <div class="row match-body">
+            <div class="col-md-12"><br></div>
+            <div class="col-md-12 title-general text-center articulo-titulo">
+                <label class="label-form articulo-descrip">{{articulo.titulo}}</label>
+                <br>
+               <div class="text-left">
+                    <label class="label-form match-nombre font-italic"><i class="fas fa-user match-icon-user"></i>
+                        {{articulo.autor.nombre}}</label>
+               </div>
+            </div>
+           <div class="col-md-12 match-resumen text-left">
+                <div class="col-md-12 text-left">
+                    <label class="label-form text-center">  
+                    {{articulo.descripcion}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="row">
+            <div *ngFor="let categoria of articulo.categorias">
+               <div class="col-md-11">
+                    <span class=" badge badge-dark">{{categoria.titulo}}</span>
+               </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row match-footer">
+            <div class="col-md-6 match-yes text-left">
+                <a (click)="solicitarMatchToArticulo(articulo)"><i class="far fa-heart fa-2x"></i></a>
+            </div>
+            <div class="col-md-6 match-no text-right">
+                <a><i class="fas fa-times fa-2x" (click)="descartarMatch(articulo)"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

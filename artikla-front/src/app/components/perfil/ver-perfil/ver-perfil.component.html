@@ -1,0 +1,65 @@
+<div class="row mt-4">
+    <div class="col">
+        <div class="card kl-card kl-xl kl-reveal kl-fade kl-overlay kl-show kl-slide-in kl-shine kl-reveal kl-hide kl-spin ml-0 mr-0  kl-shadow-br">
+            <form>
+            <div class="kl-card-block bg-poli kl-lg kl-shadow-br kl-overlay">
+                <div class="kl-background">
+                </div>
+                <div class="kl-card-overlay kl-card-overlay-split-v-4 kl-dark kl-inverse kl-bottom-in">
+                    <div class="kl-card-overlay-item"></div>
+                    <div class="kl-card-overlay-item"></div>
+                    <div class="kl-card-overlay-item"></div>
+                    <div class="kl-card-overlay-item"></div>
+                </div>
+                <br/>
+                <br/>
+            </div>
+                </form>
+            <div  *ngIf="showComponent" class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="card-block">
+                        <h4 class="card-title mt-3 text-center">{{usuarioDto.nombre}}</h4>
+                        <div class="card-text text-dark text-center">
+                            <div *ngIf="isEditor;else isAutor">
+                                <i style="color: rgba;" class="fas fa-newspaper"></i>
+                                <br/>
+                                <span class="badge badge-dark" >Editor </span>
+                            </div>
+                            <br/>
+                            <ng-template #isAutor>
+                                <i style="color: #000000;" class="fas fa-feather"></i>
+                                <br/>
+                                <span class="badge badge-dark">Autor </span>
+                            </ng-template>
+                        </div>
+                            
+                        
+                        <div class="kl-card-item kl-ptr kl-show "> <p class="text-center text-dark mt-6">
+                               </p></div>
+                        <div class="kl-card-item kl-ptr kl-show "> <p class="text-center text-dark mt-6">
+                            {{usuarioDto.descripcion}}
+                            </p></div>
+                        <div class="kl-card-item kl-ptr kl-show "> <p class="text-center text-dark mt-6">
+                                {{usuarioDto.correo}}
+                        </p></div>
+                        <!-- <div class="kl-card-item kl-ptr kl-show "> <p class="text-center text-dark mt-6">
+                          <a class="card-title">Cambiar contraseña</a>
+                            </p></div> -->
+                        <div class="text-center pb-4">
+                            <hr class="hw"/>
+                            <a href="perfil.xhtml"></a>
+                            <a  style="cursor: pointer;" (click)="editarPerfil(usuarioDto)" class="btn btn-outline-warning fa fa-wrench"></a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div> 
+    </div> 
+</div>
+
+<app-editar-perfil *ngIf="modulo == MODULOS.EDITAR_PERFIL" (backHome)="cerrarModal()" [usuarioEditar]="usuarioDto"></app-editar-perfil>

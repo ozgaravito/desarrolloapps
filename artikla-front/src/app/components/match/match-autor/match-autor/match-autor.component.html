@@ -1,0 +1,50 @@
+<div class="row match-content text-center">
+    <div class="col-md-3 match-box" *ngFor="let editor of editoresMatch">
+        <div class="row match-header">
+            <div class="col-md-4 text-left">
+                <label class="label-form"><i class="fas fa-newspaper fa-2x mt-2"></i></label>
+            </div>
+            <div class="col-md-4 match-photo text-center">
+                <img src="../../../../assets/images/login-wallpaper.jpg" alt="">
+            </div>
+
+        </div>
+        <div class="row match-body">
+            <div class="col-md-12"><br></div>
+            <div class="col-md-12 title-general text-center">
+                <label class="label-form articulo-descrip">{{editor.nombre}}</label>
+                <br>
+               <div class="text-left">
+                    <label class="label-form match-nombre font-italic"><i class="fas fa-user match-icon-user"></i>
+                        {{editor.nombre}}</label>
+               </div>
+            </div>
+           <div class="col-md-12 match-resumen text-left">
+                <div class="col-md-12 text-left">
+                    <p class="text-center">  
+                    {{editor.descripcion}}
+                    </p>
+                </div>
+            </div>
+       
+        </div>
+        <div class="row">
+            <div *ngFor="let categoria of editor.intereses">
+               <div class="col-md-11">
+                    <span class=" badge badge-dark">{{categoria.titulo}}</span>
+               </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row match-footer">
+            <div class="col-md-6 match-yes text-left" (click)="solicitarMatchToEditor(editor)">
+                <a><i class="far fa-heart fa-2x"></i></a>
+            </div>
+            <div class="col-md-6 match-no text-right" (click)="descartarMatch(editor)">
+                <a><i class="fas fa-times fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

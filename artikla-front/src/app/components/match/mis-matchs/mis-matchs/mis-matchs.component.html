@@ -1,0 +1,207 @@
+<div class="container" *ngIf="mostrarMatchsSolicitados == 1">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <ul class="nav nav-pills justify-content-center nav-bg">
+                <li class="nav-item">
+                    <a class="nav-link active">Match Solicitados</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link" (click)="redirigirMatchRecibidos()">Matchs Recibidos</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link" (click)="redirigirMatchExitosos()">Matchs Exitosos</a>
+                </li>
+            </ul>
+            <hr />
+        </div>
+        <h2 *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 2">Artículos</h2>
+        <h2 *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 1">Revistas</h2>
+
+        <div class="row solicitud-container" *ngFor="let match of matchsSolicitados">
+            <div class="col-md-1 match-photo">
+                <img src="../../../../assets/images/login-wallpaper.jpg" alt="">
+            </div>
+            <div class="col-md-2  text-left ml-1 nombre-match ">
+                <span class="title mt-2 "> {{match.usuarioSolicitado.nombre}} </span> <br />
+                <div *ngIf="match.usuarioSolicitado.rol == 1">
+                    <span class="badge badge-dark">Autor</span>
+                </div>
+                <div *ngIf="match.usuarioSolicitado.rol == 2">
+                    <span class="badge badge-dark">Editor</span>
+                </div>
+
+            </div>
+
+            <div class="col-md-5 " *ngIf="match.usuarioSolicitado.rol == 1">
+                <span class="title mt-4"> <i><strong>Titulo: </strong>{{match.articulo.titulo}}</i> </span>
+                <br />
+                <span class="title mt-4 ml-1 descripcion-match"> <strong>Descripción:
+                    </strong><i>{{match.articulo.descripcion}}</i> </span>
+            </div>
+
+            <div class="col-md-5 descripcion-match " *ngIf="match.usuarioSolicitado.rol == 2">
+                <span class="title mt-4"> <strong>Descripción: </strong><i>{{match.usuarioSolicitado.descripcion}}</i>
+                </span>
+            </div>
+
+            <div class="col-md-2 estado-match">
+
+                <div *ngIf="match.match.estado == 1">
+                    <span>Estado Match: </span> <i class="mt-2"> Pendiente</i>
+                </div>
+                <div *ngIf="match.match.estado == 2">
+                    <span>Estado Match: </span><i class="mt-2"> Rechazado</i>
+                </div>
+                <div *ngIf="match.match.estado == 3">
+                    <span>Estado Match: </span><i class="mt-2"> Aceptada</i>
+                </div>
+            </div>
+            <div class="col-md-1 text-right">
+                <span class="fas fa-eye fa-2x ver-detalle-match mr-1"></span>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="container" *ngIf="mostrarMatchsSolicitados == 2 ">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <ul class="nav nav-pills justify-content-center nav-bg">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="redirigirMatchSolicitados()">Match Solicitados</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link active">Matchs Recibidos</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link" (click)="redirigirMatchExitosos()">Matchs Exitosos</a>
+                </li>
+            </ul>
+            <hr />
+        </div>
+      
+            <div class="row solicitud-container" *ngFor="let matchRecibido of matchsRecibidos">
+                <div class="col-md-1 match-photo">
+                    <img src="../../../../assets/images/login-wallpaper.jpg" alt="">
+                </div>
+                <div class="col-md-2 nombre-match text-left ml-1 ">
+                    <span class="title mt-2 nombre-match"> {{matchRecibido.usuarioSolicitante.nombre}} </span> <br />
+                    <div *ngIf="matchRecibido.usuarioSolicitante.rol == 1">
+                        <span class="badge badge-dark">Autor</span>
+                    </div>
+                    <div *ngIf="matchRecibido.usuarioSolicitante == 2">
+                        <span class="badge badge-dark">Editor</span>
+                    </div>
+                </div>
+                <div class="col-md-5 " *ngIf="matchRecibido.usuarioSolicitante.rol == 2">
+                    <span class="title mt-4"> <i><strong>Titulo de tu artículo:
+                            </strong>{{matchRecibido.articulo.titulo}}</i> </span>
+                    <br />
+                    <span class="title mt-4 ml-1 descripcion-match"> <strong>Descripción de tu artículo:
+                        </strong><i>{{matchRecibido.articulo.descripcion}}</i> </span>
+                </div>
+
+                <div class="col-md-4 descripcion-match " *ngIf="matchRecibido.usuarioSolicitante.rol == 1">
+                    <span class="title mt-4"> <strong>Descripción:
+                        </strong><i>{{matchRecibido.usuarioSolicitante.descripcion}}</i> </span>
+                </div>
+                <div class="col-md-1"></div>
+
+                <div class="col-md-2 estado-match mt-2">
+
+                    <span class="fas fa-eye fa-2x ver-detalle-match"></span>
+                    <a><i class="fas fa-check fa-2x  ml-4  aceptar-match" (click)="aceptarMatch(matchRecibido)"></i></a>
+                    <a><i class="fas fa-times fa-2x  ml-4  rechazar-match"
+                            (click)="rechazarMatch(matchRecibido)"></i></a>
+                </div>
+            </div>
+
+
+
+    </div>
+</div>
+
+
+
+<div class="container" *ngIf="mostrarMatchsSolicitados == 3 ">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <ul class="nav nav-pills justify-content-center nav-bg">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="redirigirMatchSolicitados()">Match Solicitados</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link" (click)="redirigirMatchRecibidos()">Matchs Recibidos</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link active" (click)="redirigirMatchExitosos()">Matchs Exitosos</a>
+                </li>
+            </ul>
+            <hr />
+        </div>
+        <h2 *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 2">Artículos/Autores</h2>
+        <h2 *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 1">Revistas</h2>
+
+        <div class="row solicitud-container" *ngFor="let matchExitosos of matchExitosos">
+            <div class="col-md-1 match-photo">
+                <img src="../../../../assets/images/login-wallpaper.jpg" alt="">
+            </div>
+            <div class="col-md-2  text-left ml-1 nombre-match ">
+
+                <div *ngIf="rolUsuarioSesion == 1">
+                    <span class="title mt-2 "> {{matchExitosos.editor.nombre}} </span> <br />
+                    <span class="badge badge-dark">Editor</span>
+                </div>
+                <div *ngIf="rolUsuarioSesion == 2">
+                    <span class="title mt-2 "> {{matchExitosos.autor.nombre}} </span> <br />
+                    <span class="badge badge-dark">Autor</span>
+                </div>
+            </div>
+
+            <div class="col-md-5 " *ngIf="matchExitosos.articulo != null">
+                <span class="title mt-4"> <i><strong>Titulo artículo: </strong>{{matchExitosos.articulo.titulo}}</i>
+                </span>
+                <br />
+                <span class="title mt-4 ml-1 descripcion-match"> <strong>Descripción Artículo:
+                    </strong><i>{{matchExitosos.articulo.descripcion}}</i> </span>
+            </div>
+            <div class="col-md-5 descripcion-match " *ngIf="rolUsuarioSesion == 2 && matchExitosos.articulo == null ">
+                <span class="title mt-4"> <strong>Descripción Autor: </strong><i>{{matchExitosos.autor.descripcion}}</i>
+                </span>
+            </div>
+
+            <div class="col-md-5 descripcion-match " *ngIf="rolUsuarioSesion == 1 && matchExitosos.articulo == null">
+                <span class="title mt-4"> <strong>Descripción: </strong><i>{{matchExitosos.editor.descripcion}}</i>
+                </span>
+            </div>
+
+            <div class="col-md-2 estado-match">
+
+                <div *ngIf="matchExitosos.match.estado == 1">
+                    <span>Estado Match: </span> <i class="mt-2"> Pendiente</i>
+                </div>
+                <div *ngIf="matchExitosos.match.estado == 2">
+                    <span>Estado Match: </span><i class="mt-2"> Rechazado</i>
+                </div>
+                <div *ngIf="matchExitosos.match.estado == 3">
+                    <span>Estado Match: </span><i class="mt-2"> Aceptada</i>
+                </div>
+            </div>
+            <div class="col-md-1 text-right">
+                <span class="fas fa-eye fa-2x ver-detalle-match mr-1" (click)="redirigirMatchComunicado(matchExitosos)"></span>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<app-contacto-match *ngIf="mostrarMatchsSolicitados == 4" (backMatch)="cerrarModal($event)" [contactoMatch]="contactoMatch"  ></app-contacto-match>

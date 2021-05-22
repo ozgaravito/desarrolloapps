@@ -1,0 +1,58 @@
+<header class="header">
+    <div class="col-md-12 text-right header-data">
+        <label class="header-nombre font-italic"><i class="fas fa-feather-alt"></i>{{status.obtenerUsuarioLocalStorage().nombre}}</label>
+        <a id="btn-logout" class="header-nombre font-italic text-danger" (click)="router.navigate(['/auth/login'])">Salir</a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light home-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav">
+                <li class="nav-item text-center" (click)="validarRolUsuario(status.obtenerUsuarioLocalStorage())">
+                    <a class="nav-link">
+                        <label>Inicio<i class="far fa-home fa-1x"></i></label>
+                    </a>
+                </li>
+                <li class="nav-item text-center" >
+                    <a class="nav-link" (click)="asignarModulo(MODULOS.MIS_MATCH)">
+                        <label>Mis Match<i class="far fa-heart fa-1x"></i></label>
+                    </a>
+                </li>
+                <li *ngIf="status.obtenerUsuarioLocalStorage().rol ==  TIPO_USUARIO.AUTOR" class="nav-item text-center" (click)="asignarModulo(1)">
+                    <a class="nav-link">
+                        <label>Mis artículos<i class="far fa-newspaper fa-1x"></i></label>
+                    </a>
+                </li>
+                <li class="nav-item text-center" (click)="asignarModulo(7)">
+                    <a class="nav-link">
+                        <label>Mi perfil<i class="far fa-user fa-1x"></i></label>
+                    </a>
+                </li>
+                <!-- <li class="nav-item item-chat text-center">
+                    <a class="nav-link">
+                        <label>Chat<i class="fas fa-sms fa-1x"></i></label>
+                    </a>
+                </li> -->
+            </ul>
+
+         
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <app-match-autor *ngIf="modulo === 4"></app-match-autor>
+    <app-match-editor *ngIf="modulo === 5"></app-match-editor>
+    <app-insertar *ngIf="modulo == 2"></app-insertar>       
+    <app-listar *ngIf="modulo == 1" (backHome)="editarArticulo($event, articuloDto)"> </app-listar>   
+    <app-ver-perfil *ngIf="modulo === 7"></app-ver-perfil>
+    <app-mis-matchs *ngIf="modulo == MODULOS.MIS_MATCH"></app-mis-matchs>
+</div>
+
+<footer>
+<br/>
+</footer>
+
+
+

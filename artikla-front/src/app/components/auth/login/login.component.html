@@ -1,0 +1,61 @@
+<div class="fondo-auth"></div>
+<div class="container">
+    <div class="contenedor-prin">
+        <div class="login-card user_card_2">
+            <div class="logo-svg text-center"></div>
+
+            <div class="user_card">
+                <div class="d-flex justify-content-center title-general">
+                    <h5 class="panel-title">ARTIKLA</h5>
+                </div>
+                <hr>
+                <div class="justify-content-center">
+                    <form id="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="label-form" for="CorreoUsuario">Correo electrónico<span class="oblig"> *</span></label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-at"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.correoUsuarioVal.showMsg }"
+                                    formControlName="correoUsuario" autocomplete="off" id="CorreoUsuario" placeholder="ejemplo@email.com">
+                                    <span class="invalid-feedback">{{ VAL.correoUsuarioVal.showMsg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="label-form" for="PasswordUsuario">Contraseña<span class="oblig"> *</span></label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text div-icon"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control input_doc" [ngClass]="{'is-invalid': VAL.passwordLoginVal.showMsg }"
+                                    formControlName="passwordUsuario" autocomplete="off" id="PasswordUsuario" placeholder="***********">
+                                    <span toggle="#Password" class="fa fa-fw fa-eye field-icon toggle-password" (click)="status.viewPass($event.target, 'PasswordUsuario')"></span>
+                                    <span class="invalid-feedback">{{ VAL.passwordLoginVal.showMsg }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="form-group">
+                                    <input type="submit" name="btn-vincular" class="btn btn-login btn-sm" value="Ingresar">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="title-general text-center">
+                                    <h6 class="panel-title">¿Aún no estás registrado?</h6>
+                                </div>
+                                <div class="form-group">
+                                    <a class="nav-link" (click)="status.onRedirect('/auth/registrar')" class="btn btn-login btn-sm">Regístrate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

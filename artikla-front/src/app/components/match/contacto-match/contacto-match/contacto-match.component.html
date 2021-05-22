@@ -1,0 +1,47 @@
+<div class="container-fluid articulos contenedor-window" >
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 modal-container">
+            <div class="card mt-5">
+                <div class="card-header row">
+                    <div class="col-md-8"><h3>Información Contacto</h3></div>
+                    <div class="col-md-4"><a (click)="cerrarModal(3)" class="fa fa-times float-right mt-2 cerrar-modal "></a></div>
+                    
+                </div>
+                <div class="card-body"> 
+                    <div class="contacto-container">
+                        <div class="text-center">
+                            <div class="alert alert-success" role="alert">
+                                Felicidades el match se ha completado, ya puedes contactar a tu Match.
+                              </div>
+                              <br/>
+                            <div  *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 1">
+                                <span><strong>Nombre Revista:</strong> {{contactoMatch.editor.nombre}} </span>
+                                <br/>
+                                <span><strong>Correo Contacto Revista :</strong> {{contactoMatch.editor.correo}} </span>
+                            </div>
+                            <div  *ngIf="this.status.obtenerUsuarioLocalStorage().rol == 2">
+                                <span><strong>Nombre Autor:</strong> {{contactoMatch.autor.nombre}} </span>
+                                <br/>
+                                <span><strong>Correo Contacto Autor :</strong> {{contactoMatch.autor.correo}} </span>
+                            </div>
+                        </div>
+                    </div>   
+                        <div class="row p-3" style="border-top: 1px solid rgba(0,0,0,.2);">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <input type="submit" (click)="cerrarModal(3)" class="btn btn-outline-info d-inline-block btn-cerrar-modal" value="Ok!" />
+                            </div>
+                    
+                            <div class="col-md-4"></div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+  

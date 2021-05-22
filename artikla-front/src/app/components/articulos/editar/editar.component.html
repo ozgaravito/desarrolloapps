@@ -1,0 +1,47 @@
+  <div class="container-fluid articulos contenedor-window" >
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 modal-container">
+            <div class="card mt-5">
+                <div class="card-header row">
+                    <div class="col-md-8"><h3>Actualizar Artículo</h3></div>
+                    <div class="col-md-4"><a (click)="cerrarModalEditar(MODULOS.ARTICULOS_LISTAR)" class="fa fa-times float-right mt-2 cerrar-modal "></a></div>
+                    
+                </div>
+                <div class="card-body"> 
+                    <form action="" [formGroup]="ArticuloDto" (ngSubmit)="actualizarArticulo(articuloEditar)" novalidate>
+                        <div class="form-group">
+                            <label for="tituloArticulo">Nuevo título artículo :</label>
+                            <input formControlName="titulo"  [(ngModel)]="articuloEditar.titulo" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionArticulo">Nueva descripción artículo :</label>
+                            <textarea formControlName="descripcion"  [(ngModel)]="articuloEditar.descripcion" class="form-control" rows="4" cols="50"></textarea>
+                        </div>
+                        <hr />
+                    
+                        <div style="float:left;" *ngFor="let categoria of categorias; let i = index"   formArrayName="categorias">
+                                <label attr.for="categoria{{i}}" class="select-categoria badge badge-dark ml-2" for="checkCategoria" >{{categoria.titulo}}</label>
+                                <input id="categoria{{i}}" type="checkbox" [checked]="filtrarCategoriasSeleccionadas(categoria, 'categorias')" />
+                        </div>
+                        <br />
+                        <br />
+                    
+                        <div class="row p-3" style="border-top: 1px solid rgba(0,0,0,.2);">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <input type="submit" class="btn btn-outline-success d-inline-block" value="Actualizar Artículo" />
+                            </div>
+                    
+                            <div class="col-md-4"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+  

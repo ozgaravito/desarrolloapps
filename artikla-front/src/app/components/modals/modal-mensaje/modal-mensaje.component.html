@@ -1,0 +1,21 @@
+<div class="contenedor-window">
+    <div class="contenedor-prin">
+        <div class="login-card user_card_2 card-window">
+            <div class="user_card">
+                <div class="title-general text-center" *ngFor="let item of modalInfo.listaMensajes">
+                    <!-- <h6 class="panel-title">{{ item }}</h6> -->
+                    <label class="label-form">{{ item }}</label>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 form-group text-left-bottom">
+                        <button (click)="modalConfirmar(false)" type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                    </div>
+                    <div class="col-md-6 form-group text-right">
+                        <button (click)="modalConfirmar(true)" type="button" class="btn btn-success btn-sm">Aceptar</button>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "app": {
+        "project": "artikla-front",
+        "target": "build",
+        "configuration": "production",
+        "path": "dist/artikla-front"
+      },
+      "azureHosting": {
+        "subscription": "221bee4a-8261-4a60-b7ba-1d2750f2e223",
+        "resourceGroupName": "artikla-front-static-deploy",
+        "account": "artiklafrontstatic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/221bee4a-8261-4a60-b7ba-1d2750f2e223/resourceGroups/artikla-1605593400553-rg/providers/Microsoft.Web/sites/artikla",
+    "appService.deploySubpath": "dist\\artikla-front"
+}
